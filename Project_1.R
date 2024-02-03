@@ -2,7 +2,6 @@
 library(tidyverse)
 library(heatmaply)
 
-
 # CHECK DATA --------------------------------------------------------------
 head(mtcars) 
 data1 <- mtcars |> 
@@ -12,9 +11,8 @@ data1 <- mtcars |>
                                     ifelse(grepl("Toyota", car_type), "Toyota", "Other")))) # IF CAR IS TOYOTA, LABEL AS TOYOTA 
 # IF CAR_STATUS IS NOT ANY OF THE MANUFACTURERS PREVIOUSLY LISTED, LABEL AS OTHER 
 
-head(data1) # CHECK DATA                     
+head(data1) # CHECK DATA          
 # CREATE GRAPH  -----------------------------------------------------------
-
 
 # PLOT 3 ------------------------------------------------------------------
 
