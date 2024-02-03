@@ -15,18 +15,28 @@ data1 <- mtcars |>
 head(data1) # CHECK DATA                     
 # CREATE GRAPH  -----------------------------------------------------------
 
-# PLOT 1 ------------------------------------------------------------------
+# PLOT 2 ------------------------------------------------------------------
 
 # Which car is best for me to buy? 
+# Which type of car is best for me to buy? 
+# Group cars by Merc, Mazda, Toyota, Other? 
 data1 |> pivot_longer(cols = mpg:carb, # PIVOT LONGER COLUMN WITH VARAIABLES 
                       names_to = "values_names", # VARIABLE NAME 
-                      values_to = "values") |> # VALUES IN THE VARIABLES 
+                      values_to = "values") |> # VALUES IN THE VARIABLES
   ggplot() + 
-  geom_jitter(aes(x = values_names, # GEOM_JITTER # X VALUES IS VARIABLE NAMES 
-                  y = values, # Y VALUES IS VALUES IN THE VARAIBLES 
-                  colour = car_type)) + # COLOUR POINTS ON THE BASIS OF CAR NAME  
+  geom_jitter(aes(x = Car_status, # SET X VALUES TO CAR TYPES 
+                  y = values, # SET Y VALUES TO VALUES 
+                  colour = Car_status), # SET COLOUR TO CAR TYPES 
+              alpha = 0.7, # SET ALPHA TO 0.7 
+              width = 0.2, # SET WIDTH TO 0.2 
+              height = 0) + # SET HEIGHT TO 0
   theme_bw() + # SET THEME 
   ggtitle("Scatter plot of variables in the mtcars dataset") + # TITLE PLOT 
   labs(colour = "Car Names") + # TITLE LEGEND 
+  labs(colour = "Car Types") + # TITLE LEGEND 
   xlab("Variables in mtcars dataset") + # TITLE X-AXIS 
-  ylab("Value (refer to variable for units)") # TITLE Y-AXIS 
+  ylab("Values (refer to variable for units)") + # TITLE Y-AXIS 
+  facet_wrap(~values_names, # FACET WRAP BASED ON VARIABLE NAMES 
+             scales = "free") # SET EACH Y-AXIS FOR EACH FACET TO INDIVDUALLY 
+
+
